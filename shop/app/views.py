@@ -31,9 +31,9 @@ class ProductByCategoryView(generics.ListAPIView):
     def get_queryset(self):
         category_name = self.request.query_params.get('category')
         if category_name == "Main":
-            return Product.objects.order_by('id')
+            return Product.objects.order_by('title')
         else:
-            return Product.objects.filter(category__name=category_name).order_by('id')
+            return Product.objects.filter(category__name=category_name).order_by('title')
 
 class ProductBySearhView(generics.ListAPIView):
     serializer_class = ProductSerializer
