@@ -25,12 +25,29 @@ SECRET_KEY = '04bdb733-b320-4032-9ce3-c74d6dc19dc8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0','onlineshop-api.com','onlineshop.com']
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",
-    # добавьте другие допустимые адреса, если необходимо
+     "http://127.0.0.1:4200",
+     "http://0.0.0.0:4200",
+     "https://onlineshop.com",
+     "https://onlineshop-api.com"
+    # пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 ]
 # Application references
+
+# РќР°СЃС‚СЂРѕР№РєРё HTTPS
+SECURE_SSL_REDIRECT = False  # Р’РєР»СЋС‡Р°РµС‚ РїРµСЂРµРЅР°РїСЂР°РІР»РµРЅРёРµ СЃ HTTP РЅР° HTTPS
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')  # Р•СЃР»Рё РІР°С€ Р±СЌРєРµРЅРґ РЅР°С…РѕРґРёС‚СЃСЏ Р·Р° РїСЂРѕРєСЃРё
+
+
+
+# # РћРїС†РёРѕРЅР°Р»СЊРЅРѕ, РЅР°СЃС‚СЂРѕР№С‚Рµ РєСѓРєРё РґР»СЏ HTTPS
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'Strict'
+CSRF_COOKIE_HTTPONLY = True
+CSRF_TRUSTED_ORIGINS = ['https://onlineshop-api.com']
 # https://docs.djangoproject.com/en/2.1/ref/settings/#std:setting-INSTALLED_APPS
 INSTALLED_APPS = [
     # Add your apps here to enable them
@@ -45,6 +62,9 @@ INSTALLED_APPS = [
     'app'
 ]
 
+# # РџСѓС‚СЊ Рє РІР°С€РёРј SSL СЃРµСЂС‚РёС„РёРєР°С‚Р°Рј
+# SSL_CERTIFICATE = '/etc/nginx/ssl/backend.crt'
+# SSL_PRIVATE_KEY = '/etc/nginx/ssl/backend.key'
 # Middleware framework
 # https://docs.djangoproject.com/en/2.1/topics/http/middleware/
 MIDDLEWARE = [
@@ -90,11 +110,11 @@ WSGI_APPLICATION = 'shop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'shop',
-        'USER':'postgres',
-        'PASSWORD':'tima12345',
-        'HOST':'localhost',
-        'PORT':'3030'
+        'NAME': 'prediction',
+        'USER':'prediction',
+        'PASSWORD':'prediction',
+        'HOST': 'postgres', 
+        'PORT':'5432'
     }
 }
 
@@ -126,9 +146,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 STATIC_URL = '/static/'
-STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))
-# Указываем каталог, в котором будут храниться медиафайлы
+STATIC_ROOT =os.path.join(BASE_DIR, 'static') 
+# пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
 
-# URL для обслуживания медиафайлов пользователю
+# URL пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 MEDIA_URL = '/media/'
