@@ -25,15 +25,11 @@ SECRET_KEY = '04bdb733-b320-4032-9ce3-c74d6dc19dc8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0','onlineshop-api.com','onlineshop.com']
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:4200",
-     "http://127.0.0.1:4200",
-     "http://0.0.0.0:4200",
-     "https://onlineshop.com",
-     "https://onlineshop-api.com"
-    # �������� ������ ���������� ������, ���� ����������
-]
+
+ALLOWED_HOSTS = ["*"]
+CORS_ORIGIN_ALLOW_ALL=True
+CSRF_TRUSTED_ORIGINS = ["http://localhost:4200"]
+
 # Application references
 
 # Настройки HTTPS
@@ -47,7 +43,7 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'Strict'
 CSRF_COOKIE_HTTPONLY = True
-CSRF_TRUSTED_ORIGINS = ['https://onlineshop-api.com']
+
 # https://docs.djangoproject.com/en/2.1/ref/settings/#std:setting-INSTALLED_APPS
 INSTALLED_APPS = [
     # Add your apps here to enable them
@@ -72,7 +68,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -110,9 +106,9 @@ WSGI_APPLICATION = 'shop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'prediction',
-        'USER':'prediction',
-        'PASSWORD':'prediction',
+        'NAME': 'shop',
+        'USER':'postgres',
+        'PASSWORD':'tima12345',
         'HOST': 'postgres', 
         'PORT':'5432'
     }
