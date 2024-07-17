@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '04bdb733-b320-4032-9ce3-c74d6dc19dc8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 ALLOWED_HOSTS = ["*"]
@@ -147,4 +147,4 @@ STATIC_ROOT =os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
 
 # URL ��� ������������ ����������� ������������
-MEDIA_URL = '/media/'
+MEDIA_URL = 'http://localhost:4200/media/'
